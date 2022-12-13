@@ -53,15 +53,15 @@ class Chain:
         Asma işlemi yapılınca en zayıf halkalar kırılacaktır.
         Zayıf halkalar kırılınca self.__links güncellenmelidir. 
         """
-        print("----------------------")
+       # print("----------------------")
         
-        for link in range(len(self.__links)):
-                print(self.__links[link])
-        print("----------------------")
+        #for link in range(len(self.__links)):
+         #       print(self.__links[link])
+        #print("----------------------")
         if(link_index !=0 and link_index!=len(self.__links)):
       
             #finds weakest links' index for left
-            print("first if executed")
+            #print("first if executed")
             temp = 0
             i = 0
             while(i < link_index):
@@ -93,7 +93,7 @@ class Chain:
             self.__links = updatedList
                 
         elif(link_index == 0):
-            print("first elif executed")
+           
             temp = link_index+1
             i = link_index+1
             while(i < len(self.__links)):
@@ -102,8 +102,7 @@ class Chain:
                    print(temp)
                i +=1
 
-            print("weakest")
-            print(self.__links[temp])
+          
             j = temp
             while(j < len(self.__links)):
                 self.__links[j] = None
@@ -112,7 +111,7 @@ class Chain:
             self.__links = updatedList
             
         elif(link_index==len(self.__links)):
-            print("sec elif executed")
+        
             temp = 0
             i = 0
             while(i < link_index):
@@ -129,14 +128,16 @@ class Chain:
                 j = j - 1
             updatedList = [i for i in self.__links if i != None]
             self.__links = updatedList
+        else:
+            print("something went wrong")
             
-        print("----------------------")
+        """print("----------------------")
 
         for link2 in range(len(self.__links)):
               print("updated list")
               print(self.__links[link2])
             
-        print("----------------------")
+        print("----------------------")"""
 
 
 
