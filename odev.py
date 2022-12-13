@@ -54,50 +54,93 @@ class Chain:
         Zayıf halkalar kırılınca self.__links güncellenmelidir. 
         """
         print("----------------------")
-
+        
         for link in range(len(self.__links)):
-            print(self.__links[link])
-        
+                print(self.__links[link])
         print("----------------------")
-
-        #finds weakest links' index for left
-        temp = 0
-        i = 0
-        while(i < link_index):
-            if(self.__links[i].strength <= self.__links[temp].strength):
-                temp = i
-            i += 1
+        if(link_index !=0 and link_index!=len(self.__links)):
+      
+            #finds weakest links' index for left
+            print("first if executed")
+            temp = 0
+            i = 0
+            while(i < link_index):
+                if(self.__links[i].strength <= self.__links[temp].strength):
+                    temp = i
+                i += 1
+                
+            #print(self.__links[temp])
             
-        print(self.__links[temp])
-        
-        #removes weakeast link and other links
-        j = temp
-        while(j > -1):
-            self.__links.pop(j)
-            j = j - 1
-        
-        temp = link_index+1
-        i = link_index+1
-        while(i < len(self.__links)):
-            if(self.__links[i].strength <= self.__links[temp].strength):
-                temp = i
-            i +=1
-
-
-        j = temp
-        while(j < len(self.__links)):
-            self.__links.pop(j)
-            j = j + 1
+            #removes weakeast link and other links
+            j = temp
+            while(j > -1):
+                self.__links[j] = None
+                j = j - 1
             
-        
+            temp = link_index+1
+            i = link_index+1
+            while(i < len(self.__links)):
+                if(self.__links[i].strength <= self.__links[temp].strength):
+                    temp = i
+                i +=1
+
+
+            j = temp
+            while(j < len(self.__links)):
+                self.__links[j] = None
+                j = j + 1
+            updatedList = [i for i in self.__links if i != None]
+            self.__links = updatedList
+                
+        elif(link_index == 0):
+            print("first elif executed")
+            temp = link_index+1
+            i = link_index+1
+            while(i < len(self.__links)):
+               if(self.__links[i].strength <= self.__links[temp].strength):
+                   temp = i
+                   print(temp)
+               i +=1
+
+            print("weakest")
+            print(self.__links[temp])
+            j = temp
+            while(j < len(self.__links)):
+                self.__links[j] = None
+                j = j + 1
+            updatedList = [i for i in self.__links if i != None]
+            self.__links = updatedList
+            
+        elif(link_index==len(self.__links)):
+            print("sec elif executed")
+            temp = 0
+            i = 0
+            while(i < link_index):
+                if(self.__links[i].strength <= self.__links[temp].strength):
+                    temp = i
+                i += 1
+                
+            #print(self.__links[temp])
+            
+            #removes weakeast link and other links
+            j = temp
+            while(j > -1):
+                self.__links[j] = None
+                j = j - 1
+            updatedList = [i for i in self.__links if i != None]
+            self.__links = updatedList
+            
         print("----------------------")
 
         for link2 in range(len(self.__links)):
-            print("updated list")
-            print(self.__links[link2])
-        
+              print("updated list")
+              print(self.__links[link2])
+            
         print("----------------------")
 
+
+
+    
         
 
     def get_winner(self):
@@ -124,7 +167,7 @@ class Chain:
 test_results = []
 
 # test case 1
-
+print("case 1 ")
 chain = Chain()
 links = [Link(5, 90), Link(7, 80), Link(4, 70),
          Link(4, 80), Link(9, 90), Link(4, 50)]
@@ -137,7 +180,7 @@ test_results.append(winner == Winner.LEFT)
 
 
 # test case 2
-
+print("case 2")
 chain = Chain()
 links = [Link(5, 90), Link(7, 80), Link(4, 70),
          Link(5, 80), Link(9, 90), Link(4, 50)]
@@ -149,6 +192,7 @@ winner = chain.get_winner()
 test_results.append(winner == Winner.RIGHT)
 
 # test case 3
+print("case 3")
 chain = Chain()
 links = [Link(3, 90), Link(3, 80), Link(4, 90), Link(5, 80),
          Link(4, 70), Link(4, 80), Link(5, 90), Link(3, 50)]
@@ -160,6 +204,7 @@ winner = chain.get_winner()
 test_results.append(winner == Winner.TIE)
 
 # test case 4
+print("case 4")
 chain = Chain()
 links = [Link(3, 90), Link(5, 80), Link(4, 90), Link(5, 80),
          Link(4, 70), Link(4, 80), Link(3, 90), Link(9, 50)]
