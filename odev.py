@@ -61,7 +61,7 @@ class Chain:
         #print("----------------------")
         
        
-
+        self.__p = self.__links[link_index]
         if(link_index !=0 and link_index!=len(self.__links)):
       
             temp = 0
@@ -89,6 +89,7 @@ class Chain:
                 j = j + 1
             updatedList = [i for i in self.__links if i != None]
             self.__links = updatedList
+           
                 
         elif(link_index == 0):
            
@@ -107,6 +108,7 @@ class Chain:
                 j = j + 1
             updatedList = [i for i in self.__links if i != None]
             self.__links = updatedList
+           
             
         elif(link_index==len(self.__links)):
         
@@ -125,7 +127,8 @@ class Chain:
             self.__links = updatedList
         else:
             print("something went wrong")
-            
+        
+        
 
     def get_winner(self):
         """ 
@@ -136,52 +139,29 @@ class Chain:
 
         """
         winner = None
-        lenght = len(self.__links)
-        if(lenght % 2 == 0):
-            mid = round(lenght/2)
-            sumLeft, sumRight = 0, 0
-            i = 0
-            while(i < mid):
-                sumLeft += self.__links[i].points
-                i+=1
-            i = mid
-            while(i < lenght):
-                sumRight += self.__links[i].points
-                i+=1
-            if(sumLeft > sumRight):
+        sumLeft, sumRight = 0, 0
+        index = self.__links.index(self.__p)
+        i = 0
+        while(i < index):
+            print(i)
+            sumLeft += self.__links[i].points
+            i += 1
+        i = index+1
+        while(i < len(self.__links)):
+            sumRight += self.__links[i].points
+            i += 1
+        if(sumLeft > sumRight):
                 winner = Winner.LEFT
-            elif(sumRight > sumLeft):
+        elif(sumRight > sumLeft):
                 winner = Winner.RIGHT
-            elif(sumRight == sumLeft):
+        elif(sumRight == sumLeft):
                 winner = Winner.TIE
-            else:
-                print("something went wrong")
-                return None
-        elif( lenght % 2 != 0):
-            mid = round(lenght/2)
+        else:
+            print("something went wrong")
+            return None
+
         
-            sumLeft, sumRight = 0, 0
-            i = 0
-            while(i <= mid):
-                sumLeft += self.__links[i].points
-                i+=1
-            i = mid
-            while(i < lenght):
-                sumRight += self.__links[i].points
-                i+=1
-            if(sumLeft > sumRight):
-                winner = Winner.LEFT
-            elif(sumRight > sumLeft):
-                winner = Winner.RIGHT
-            elif(sumRight == sumLeft):
-                winner = Winner.TIE
-            else:
-                print("something went wrong")
-                return None
 
-
-
-        print(winner)
         return winner
 
     def __str__(self):
