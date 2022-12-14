@@ -262,6 +262,7 @@ test_results.append(str(
 chain.hang(0)
 test_results.append(str(
     chain) == "<S:3, P:90> -> <S:5, P:80> -> <S:4, P:90> -> <S:5, P:80> -> <S:4, P:70> -> <S:4, P:80>")
+    #left 90+80+90 < 80+70+80 ?
 winner = chain.get_winner()
 if(winner == Winner.RIGHT):
     print("case 4 winner dogru")
