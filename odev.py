@@ -61,74 +61,36 @@ class Chain:
         #print("----------------------")
         
        
-        self.__p = self.__links[link_index]
-        if(link_index !=0 and link_index!=len(self.__links)):
-      
-            temp = 0
-            i = 0
-            while(i < link_index):
-                if(self.__links[i].strength <= self.__links[temp].strength):
-                    temp = i
-                i += 1
-            j = temp
-            while(j > -1):
-                self.__links[j] = None
-                j = j - 1
+        p = self.__links[link_index]
+        temp = 0
+        i = 0
+        while(i < link_index):
+            if(self.__links[i].strength <= self.__links[temp].strength):
+                temp = i
+            i += 1
+        j = temp
+        while(j > -1 and j!=link_index):
+            self.__links[j] = None
+            print(self.__links[j])
+            j = j - 1
             
-            temp = link_index+1
-            i = link_index+1
-            while(i < len(self.__links)):
-                if(self.__links[i].strength <= self.__links[temp].strength):
-                    temp = i
-                i +=1
+        temp = link_index+1
+        i = link_index+1
+        while(i < len(self.__links)):
+            if(self.__links[i].strength <= self.__links[temp].strength):
+                temp = i
+            i +=1
 
 
-            j = temp
-            while(j < len(self.__links)):
-                self.__links[j] = None
-                j = j + 1
-            updatedList = [i for i in self.__links if i != None]
-            self.__links = updatedList
-           
-                
-        elif(link_index == 0):
-           
-            temp = link_index+1
-            i = link_index+1
-            while(i < len(self.__links)):
-               if(self.__links[i].strength <= self.__links[temp].strength):
-                   temp = i
-            
-               i +=1
-
-          
-            j = temp
-            while(j < len(self.__links)):
-                self.__links[j] = None
-                j = j + 1
-            updatedList = [i for i in self.__links if i != None]
-            self.__links = updatedList
-           
-            
-        elif(link_index==len(self.__links)):
-        
-            temp = 0
-            i = 0
-            while(i < link_index):
-                if(self.__links[i].strength <= self.__links[temp].strength):
-                    temp = i
-                i += 1
-            
-            j = temp
-            while(j > -1):
-                self.__links[j] = None
-                j = j - 1
-            updatedList = [i for i in self.__links if i != None]
-            self.__links = updatedList
-        else:
-            print("something went wrong")
-        
-        
+        j = temp
+        while(j < len(self.__links) and j!=link_index):
+            self.__links[j] = None
+            print(self.__links[j])
+            j = j + 1
+        updatedList = [i for i in self.__links if i != None]
+        self.__links = updatedList
+        self.__index = self.__links.index(p)
+    
 
     def get_winner(self):
         """ 
@@ -140,13 +102,12 @@ class Chain:
         """
         winner = None
         sumLeft, sumRight = 0, 0
-        index = self.__links.index(self.__p)
         i = 0
-        while(i < index):
+        while(i < self.__index):
             print(i)
             sumLeft += self.__links[i].points
             i += 1
-        i = index+1
+        i += 1
         while(i < len(self.__links)):
             sumRight += self.__links[i].points
             i += 1
